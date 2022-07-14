@@ -166,8 +166,6 @@ tasks:
   - action: remove_path
     path: ./resources/[esx]/esx_skin
   - action: remove_path
-    path: ./resources/[esx]/skinchanger
-  - action: remove_path
     path: ./resources/[esx_addons]/esx_accessories
   - action: remove_path
     path: ./resources/[esx_addons]/esx_animations
