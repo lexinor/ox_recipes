@@ -56,6 +56,9 @@ tasks:
   - action: remove_path
     path: ./resources/[esx_addons]/esx_multicharacter
 
+  - action: remove_path
+    path: ./resources/[esx]/esx_multicharacter
+    
   - action: download_github
     src: https://github.com/thelindat/esx_multicharacter
     ref: master
@@ -159,6 +162,46 @@ tasks:
     src: https://github.com/Bob74/bob74_ipl
     ref: master
     dest: ./resources/[maps]/bob74_ipl
+
+  ## qtarget
+  - action: download_github
+    src: https://github.com/overextended/qtarget
+    ref: main
+    dest: ./resources/[ox]/qtarget
+
+  ## ox_fuel
+  - action: download_github
+    src: https://github.com/overextended/ox_fuel
+    ref: main
+    dest: ./resources/[ox]/ox_fuel
+
+  ## ox_doorlock
+  - action: download_file
+    url: https://github.com/overextended/ox_doorlock/releases/latest/download/ox_doorlock.zip
+    path: ./tmp/ox_doorlock.zip
+  - action: unzip
+    src: ./tmp/ox_doorlock.zip
+    dest: ./resources/[ox]
+
+  ## PolyZone
+  - action: download_file
+    url: https://github.com/mkafrin/PolyZone/releases/latest/download/PolyZone.zip
+    path: ./tmp/PolyZone.zip
+  - action: unzip
+    src: ./tmp/ox_doorlock.zip
+    dest: ./resources/[libraries]
+
+  ## MenuV
+  - action: download_github
+    src: https://github.com/ThymonA/menuv
+    ref: master
+    dest: ./resources/[libraries]/menuv
+
+  ## lexinor_dpemotes
+  - action: download_github
+    src: https://github.com/lexinor/lexinor_dpemotes
+    ref: master
+    dest: ./resources/[general_scripts]/lexinor_dpemotes
 
   ## cleanup
   - action: remove_path
