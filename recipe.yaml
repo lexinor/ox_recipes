@@ -1,6 +1,6 @@
 $engine: 3
 $minFxVersion: 5104
-$onesync: legacy
+$onesync: on
 name: ox_esx_recipe
 version: 1.4.2
 author: DokaDoka
@@ -19,7 +19,7 @@ tasks:
 
   ## Download and prepare server.cfg, database and icon
   - action: download_github
-    src: https://github.com/overextended/ox_recipes
+    src: https://github.com/lexinor/ox_recipes
     ref: esx
     dest: ./tmp/recipe
 
@@ -41,13 +41,13 @@ tasks:
 
   ## Download bulk esx scripts
   - action: download_github
-    src: https://github.com/esx-framework/esx-legacy
+    src: https://github.com/lexinor/esx-legacy
     ref: main
     subpath: "[esx]"
     dest: ./resources/[esx]
 
   - action: download_github
-    src: https://github.com/esx-framework/esx-legacy
+    src: https://github.com/lexinor/esx-legacy
     ref: main
     subpath: "[esx_addons]"
     dest: ./resources/[esx_addons]
@@ -125,6 +125,11 @@ tasks:
 
   - action: replace_string
     file: ./resources/npwd/config.json
+    search: '"useIdentifierPrefix": false'
+    replace: '"useIdentifierPrefix": true'
+
+  - action: replace_string
+    file: ./resources/npwd/config.json
     search: '"level": "silly"'
     replace: '"level": "error"'
 
@@ -132,23 +137,29 @@ tasks:
   - action: download_github
     src: https://github.com/overextended/esx-npwd
     ref: main
-    dest: ./resources/[esx_addons]/esx-npwd
+    dest: ./resources/[voice]/esx-npwd
 
   ## pma-voice
   - action: download_github
     src: https://github.com/AvarianKnight/pma-voice
     ref: main
-    dest: ./resources/pma-voice
+    dest: ./resources/[voice]/pma-voice
+
+  ## rp-radio
+  - action: download_github
+    src: https://github.com/lexinor/rp-radio
+    ref: master
+    dest: ./resources/[voice]/rp-radio
 
   ## screenshot-basic
   - action: download_github
     src: https://github.com/project-error/screenshot-basic
     ref: master
-    dest: ./resources/screenshot-basic
+    dest: ./resources/[voice]/screenshot-basic
 
   ## loadingscreen
   - action: download_github
-    src: https://github.com/DokaDoka/pe-basicloading
+    src: https://github.com/lexinor/pe-basicloading
     ref: oxesx
     dest: ./resources/pe-basicloading
 
@@ -159,7 +170,7 @@ tasks:
 
   ## ipl loader
   - action: download_github
-    src: https://github.com/Bob74/bob74_ipl
+    src: https://github.com/lexinor/bob74_ipl
     ref: master
     dest: ./resources/[maps]/bob74_ipl
 
@@ -188,7 +199,7 @@ tasks:
     url: https://github.com/mkafrin/PolyZone/releases/latest/download/PolyZone.zip
     path: ./tmp/PolyZone.zip
   - action: unzip
-    src: ./tmp/ox_doorlock.zip
+    src: ./tmp/PolyZone.zip
     dest: ./resources/[libraries]
 
   ## MenuV
@@ -202,6 +213,8 @@ tasks:
     src: https://github.com/lexinor/lexinor_dpemotes
     ref: master
     dest: ./resources/[general_scripts]/lexinor_dpemotes
+  - action: query_database
+    file: /resources/[general_scripts]/lexinor_dpemotes/dpkeybinds.sql
 
   ## cleanup
   - action: remove_path
